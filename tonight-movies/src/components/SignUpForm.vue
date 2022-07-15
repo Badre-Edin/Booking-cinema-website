@@ -23,6 +23,7 @@ import { defineComponent } from 'vue';
 import DataService from '@/services/DataService';
 import User from '@/types/User';
 import ResponseData from '@/types/ResponseData';
+
 export default defineComponent({
     name: 'SignUpForm',
     data() {

@@ -1,40 +1,49 @@
 <template>
-  <form>
-    <section>
-      <div class="form-group">
-        <label>Username</label><br />
-        <input class="form-control" placeholder="Enter your name" required v-model="Username" /><br />
-        <label>Password</label><br />
-        <input class="form-control" type="password" placeholder="password" required v-model="Username" /><br /> <br />
-        <router-link to="/HomePage" class="button">Login</router-link>
-      </div>
-    </section>
-  </form>
+  <div class="login">
+    <form @submit.prevent="login">
+      <section>
+        <div class="form-group">
+          <label for="username">Username</label><br />
+          <input class="form-control" placeholder="Enter your name" type="username" required
+            v-model="form.username" /><br />
+          <label for="password">Password</label><br />
+          <input class="form-control" type="password" placeholder="password" required v-model="form.password" /><br />
+          <br />
+          <router-link to="/HomePage" class="btn">Login</router-link>
+        </div>
+      </section>
+    </form>
+  </div>
 </template>
 
 <script lang="ts">
 
 import { defineComponent } from 'vue';
+import DataService from '@/services/DataService';
+import ResponseData from '@/types/ResponseData';
+import User from '@/types/User';
 
 export default defineComponent({
   name: 'LoginForm',
-  props: {
-    Username: String,
-    Password: String,
-   
-  },
   data() {
     return {
-      username: String,
-      password: String,
-     
-      error: String,
-
+      form: {
+        username: "",
+        password: "",
+      } as User,
     }
   },
-
   methods: {
-
+    login() {
+      let data = {
+        username: this.form.username,
+        password: this.form.password,
+      }
+      DataService.access(data)
+      .then((response: ResponseData)=>{
+        
+      })
+    }
   }
 })
 
@@ -51,7 +60,7 @@ form {
 }
 
 
-.button {
+.btn {
   font-size: large;
   width: 38.5%;
   background-color: hwb(242 10% 68% / 0.747);
@@ -68,7 +77,7 @@ form {
 
 
 
-.button:hover {
+.btn:hover {
   background-color: rgba(165, 42, 42, 0.733);
   color: white;
 }
