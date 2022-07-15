@@ -19,26 +19,25 @@ USE `cinemadb` ;
 -- Table `cinemadb`.`movies`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `movies` (
-  `idmovie` SERIAL NOT NULL AUTO_INCREMENT NOT NULL,
-  `name` VARCHAR(45) NOT NULL,
-  `desc` VARCHAR(255) NOT NULL,
-  `time` DATETIME NOT NULL,
-  `imgurl` VARCHAR(255) NOT NULL,
-  `categorie` VARCHAR(45) NOT NULL,
-  
-  PRIMARY KEY (`idmovie`);
- 
-);
+  `idmovie` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(100) ,
+  `desc` VARCHAR(800) ,
+  `time` VARCHAR(50) ,
+  `imgurl` VARCHAR(255) ,
+  `categorie` VARCHAR(45) ,
+  PRIMARY KEY (`idmovie`));
+
+
 
 -- -----------------------------------------------------
 -- Table `cinemadb`.`users`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `users` (
-  `idusers` SERIAL NOT NULL AUTO_increment NOT NULL,
-  `username` VARCHAR(45) NOT NULL,
-  `password` VARCHAR(45) NOT NULL,
-  `email` VARCHAR(45) NOT NULL,
-  `idmovie`SERIAL ,
+  `idusers` INT NOT NULL AUTO_increment ,
+  `username` VARCHAR(45) UNIQUE ,
+  `password` VARCHAR(455) ,
+  `email` VARCHAR(45) ,
+  `idmovie` INT ,
   PRIMARY KEY (`idusers`),
   INDEX `idmovie_idx` (`idmovie` ASC) VISIBLE,
   CONSTRAINT `idmovie`
@@ -47,65 +46,51 @@ CREATE TABLE IF NOT EXISTS `users` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-INSERT INTO users (username,password,email,idmovie) VALUES ('haythem','password','email',1);
--- CREATE TABLE IF NOT EXISTS public.users
--- (
---     iduser integer NOT NULL DEFAULT nextval('users_iduser_seq'::regclass),
---     username character varying(20) COLLATE pg_catalog."default" NOT NULL,
---     "email " character varying(20) COLLATE pg_catalog."default",
---     password character varying(10) COLLATE pg_catalog."default",
---     "id movie" integer NOT NULL DEFAULT nextval('"users_id movie_seq"'::regclass),
---     CONSTRAINT users_pkey PRIMARY KEY (iduser)
--- )
 
--- CREATE TABLE IF NOT EXISTS public.movies
--- (
---     idmovie integer NOT NULL DEFAULT nextval('movies_idmovie_seq'::regclass),
---     name character varying(40)[] COLLATE pg_catalog."default" NOT NULL,
---     "desc" character varying(255) COLLATE pg_catalog."default",
---     categorie character varying(20) COLLATE pg_catalog."default",
---     imgurl character varying(255)[] COLLATE pg_catalog."default",
---     CONSTRAINT movies_pkey PRIMARY KEY (idmovie)
--- )
-CREATE TABLE IF NOT EXISTS `chairs`(
-  `idchairs` SERIAL NOT NULL AUTO_increment NOT NULL,
-  `chair1` VARCHAR(45) NOT NULL default 'empty',
-  `chair2` VARCHAR(45) NOT NULL default 'empty',
-  `chair3` VARCHAR(45) NOT NULL default 'empty',
-  `chair4` VARCHAR(45) NOT NULL default 'empty',
-  `chair5` VARCHAR(45) NOT NULL default 'empty',
-  `chair6` VARCHAR(45) NOT NULL default 'empty',
-  `chair7` VARCHAR(45) NOT NULL default 'empty',
-  `chair8` VARCHAR(45) NOT NULL default 'empty',
-  `chair9` VARCHAR(45) NOT NULL default 'empty',
-  `chair10` VARCHAR(45) NOT NULL default 'empty',
-  `chair11` VARCHAR(45) NOT NULL default 'empty',
-  `chair12` VARCHAR(45) NOT NULL default 'empty',
-  `chair13` VARCHAR(45) NOT NULL default 'empty',
-   `chair14` VARCHAR(45) NOT NULL default 'empty',
-  `chair15` VARCHAR(45) NOT NULL default 'empty',
-  `chair16` VARCHAR(45) NOT NULL default 'empty',
-  `chair17` VARCHAR(45) NOT NULL default 'empty',
-  `chair18` VARCHAR(45) NOT NULL default 'empty',
-  `chair19` VARCHAR(45) NOT NULL default 'empty',
-  `chair20` VARCHAR(45) NOT NULL default 'empty',
-  `chair21` VARCHAR(45) NOT NULL default 'empty',
-  `chair22` VARCHAR(45) NOT NULL default 'empty',
-  `chair23` VARCHAR(45) NOT NULL default 'empty',
-  `chair24` VARCHAR(45) NOT NULL default 'empty',
-   `chair25` VARCHAR(45) NOT NULL default 'empty',
-  `chair26` VARCHAR(45) NOT NULL default 'empty',
-  `chair27` VARCHAR(45) NOT NULL default 'empty',
-  `chair28` VARCHAR(45) NOT NULL default 'empty',
-  `chair29` VARCHAR(45) NOT NULL default 'empty',
-  `chair30` VARCHAR(45) NOT NULL default 'empty',
+CREATE TABLE IF NOT EXISTS chairs(
+  idchairs INT NOT NULL AUTO_increment ,
+  chair1 VARCHAR(45) NOT NULL default 'empty',
+  chair2 VARCHAR(45) NOT NULL default 'empty',
+  chair3 VARCHAR(45) NOT NULL default 'empty',
+  chair4 VARCHAR(45) NOT NULL default 'empty',
+  chair5 VARCHAR(45) NOT NULL default 'empty',
+  chair6 VARCHAR(45) NOT NULL default 'empty',
+  chair7 VARCHAR(45) NOT NULL default 'empty',
+  chair8 VARCHAR(45) NOT NULL default 'empty',
+  chair9 VARCHAR(45) NOT NULL default 'empty',
+  chair10 VARCHAR(45) NOT NULL default 'empty',
+  chair11 VARCHAR(45) NOT NULL default 'empty',
+  chair12 VARCHAR(45) NOT NULL default 'empty',
+  chair13 VARCHAR(45) NOT NULL default 'empty',
+   chair14 VARCHAR(45) NOT NULL default 'empty',
+  chair15 VARCHAR(45) NOT NULL default 'empty',
+  chair16 VARCHAR(45) NOT NULL default 'empty',
+  chair17 VARCHAR(45) NOT NULL default 'empty',
+  chair18 VARCHAR(45) NOT NULL default 'empty',
+  chair19 VARCHAR(45) NOT NULL default 'empty',
+  chair20 VARCHAR(45) NOT NULL default 'empty',
+  chair21 VARCHAR(45) NOT NULL default 'empty',
+  chair22 VARCHAR(45) NOT NULL default 'empty',
+  chair23 VARCHAR(45) NOT NULL default 'empty',
+  chair24 VARCHAR(45) NOT NULL default 'empty',
+   chair25 VARCHAR(45) NOT NULL default 'empty',
+  chair26 VARCHAR(45) NOT NULL default 'empty',
+  chair27 VARCHAR(45) NOT NULL default 'empty',
+  chair28 VARCHAR(45) NOT NULL default 'empty',
+  chair29 VARCHAR(45) NOT NULL default 'empty',
+  chair30 VARCHAR(45) NOT NULL default 'empty',
 
-  `cinemachairs` SERIAL,
- PRIMARY KEY (`idchairs`),
-   CONSTRAINT `pk1`
-    FOREIGN KEY (`cinemachairs`)
-    REFERENCES `cinemadb`.`movies` (`idmovie`)
+  idmovie INT,
+ PRIMARY KEY (idchairs),
+   CONSTRAINT pk1
+    FOREIGN KEY (idmovie)
+    REFERENCES cinemadb.movies (idmovie)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
 
 );
+
+INSERT INTO movies VALUES (0,"MINIONS: THE RISE OF GRU", "Release date 1st Jul 2022 This summer, from the biggest global animated franchise in history, comes the origin story of how the worlds greatest supervillain first met his iconic Minions. ","18:15" ,"https://images.mymovies.net/images/film/cin/350x522/fid20178.jpg","comedie");
+INSERT INTO movies VALUES (2,"THOR: LOVE AND THUNDER", "Thor embarks on a journey unlike anything he's ever faced -- a quest for inner peace. However, his retirement gets interrupted by Gorr the God Butcher, a galactic killer who seeks the extinction of the gods.","20:15" ,"https://images.mymovies.net/images/film/cin/350x522/fid21005.jpg","action");
+INSERT INTO movies VALUES (3,"JURASSIC WORLD: DOMINION", "This summer, experience the epic conclusion to the Jurassic era as two generations unite for the first time.","19:15" ,"https://images.mymovies.net/images/film/cin/350x522/fid21012.jpg","adventure");
+INSERT INTO movies VALUES (4,"WHERE THE CRAWDADS SING", "From the best-selling novel comes a captivating mystery. Where the Crawdads Sing tells the story of Kya, an abandoned girl who raised herself to adulthood in the dangerous marshlands of North Carolina.","21:15" ,"http://images.mymovies.net/images/film/cin/350x522/fid21015.jpg","drama");

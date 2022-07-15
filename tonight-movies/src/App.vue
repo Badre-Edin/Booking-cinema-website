@@ -1,53 +1,57 @@
 <template>
-  <nav class="welcomeNavBar">
-    <router-link to="/">home</router-link> |
-    <router-link to="/signup">signup</router-link>
-    <router-link to="/login">log in </router-link>
-  </nav>
-  <h1>
-    
-  </h1>
-  <router-view/>
-</template>
-<script>
 
-export default defineComponent({
-  
-})
+  <nav id="navbar">
+        <h1 id="logo">logo</h1>
+        
+        
+        <div class="nav-block">
+            <router-link to="/" class="nav-item">home</router-link> 
+            <input class="nav-item" type="button" value="about us">
+              <router-link to="/signup" class="nav-item">signup</router-link>  
+              <router-link to="/login" id="login" class="nav-item" >log in </router-link>         
+        </div>
+    </nav>
+
+  <router-view />
+</template>
+<script lang="ts">
+
+export default {
+  name: 'defineComponent',
+}
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-text-align: center;
-  color: #2c3e50;
-}
-
-
-.welcomeNavBar {
-  font-family: 'Barlow Condensed', sans-serif;
-  color:white;
-  margin-top:-8px;
-  background-color: #FFC425;
-  border-radius: 5px;
-    text-align: center;
+#navbar{
+    width: 100%;
     height: 50px;
+    background-color: black;
+    position: fixed;
 }
-
-.welcomeNavBar a {
-    font-family: 'Barlow Condensed', sans-serif;
-  font-weight: bold;
-  color: #000000;
+#logo{
+    float: left;
+    color:#fff;
+    margin: 10px;
 }
-
-
-.welcomeNavBar a.router-link-exact-active {
-  color: #ffffff;
-  margin-left: 10px;
-  font-size: larger;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+.nav-block{
+    float: right;
+    padding: 15px;
 }
-
+.nav-item{
+    margin: 0px 5px;
+    background-color: transparent;
+    color:white;
+    text-decoration: none;
+}
+#login{
+    background-color: #FFC20E;
+    padding: 8px 15px;
+    margin:  -8px   7px 7px 0px;
+    float: right;
+    border-radius: 4px;
+}
+#login:hover{
+    background-color: #95771f;
+   transition: 1s ease;
+}
 </style>

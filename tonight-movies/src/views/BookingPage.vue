@@ -1,15 +1,17 @@
 <template>
-  <div class="top">
-    <img :src="`${image_url}`"
-  alt="image"/>
+<div>
+
+
+<div class="top">
+    <img :src="`${image_url}`" alt="image"/>
     <h2 class="MovieName">{{name}}</h2>
         <h2 class="Movietime">{{time}}</h2>
         <h2 class="MovieDesc">{{description}}</h2>
 
-  </div>
-  <div>
-        <hr>
-        <img class="banner" :src="`https://img.freepik.com/free-vector/online-cinema-banner-with-open-clapper-board-film-strip_1419-2242.jpg?w=2000`">
+</div>
+ 
+ <div>
+        
         <div class="chairsContainer">
             
             <div  class="chairs" v-for="chairNumber in chairs" :key="chairNumber">
@@ -25,6 +27,7 @@
     
 
   </div>
+</div>
 </template>
 
 <script lang="ts">

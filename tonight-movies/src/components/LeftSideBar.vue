@@ -36,7 +36,8 @@ a{
   left: 250px;
   width: 250px;
   height: 100%;
-  margin-top: 7px;
+  margin-top: -90px;
+  padding-top: 90px;
   margin-left: -250px;
   overflow-y: auto;
   background: rgba(0, 0, 0, 0.7);

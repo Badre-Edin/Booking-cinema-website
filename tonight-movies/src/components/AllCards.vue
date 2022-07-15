@@ -1,56 +1,69 @@
 <template>
+<div class="holder">
  <div class="Container"  v-for="movie in Movies" :key="movie.id">
     <div  class="MovieContainer">
        
-        <img :src="`${movie.image_url}`"
+        <img :src="`${movie.imgurl}`"
   alt="image"/>
     <h2 class="MovieName">{{movie.name}}</h2>
         <h2 class="Movietime">{{movie.time}}</h2>
        
-       <v-btn class="watch"><router-link to="/BookingPage"> Watch </router-link> </v-btn> 
+       <v-btn class="watch"  @click="navigateTo({name: 'BookingPage'})"> Watch </v-btn> 
     </div>
 
  </div>
+</div>
 </template>
 
 <script lang="ts">
  import { defineComponent } from 'vue';
-
+  import axios from 'axios'
 export default defineComponent({
   name: 'AllCards',
   data() {
   return {
-    Movies: [{id:1,name:"LIGHTYEAR",image_url:"https://images.mymovies.net/images/film/cin/350x522/fid21013.jpg",description:"Release date 17th Jun 2022 \n The definitive origin story of Buzz Lightyear, the hero who inspired the toy, Lightyear follows the legendary Space Ranger after he is marooned on a hostile planet 4.2 million light-years from Earth alongside his commander and their crew.",time:"17:24"},
-    {id:1,name:"LIGHTYEAR",image_url:"https://images.mymovies.net/images/film/cin/350x522/fid21013.jpg",description:"Release date 17th Jun 2022 \n The definitive origin story of Buzz Lightyear, the hero who inspired the toy, Lightyear follows the legendary Space Ranger after he is marooned on a hostile planet 4.2 million light-years from Earth alongside his commander and their crew.",time:"17:24"},
-    {id:1,name:"LIGHTYEAR",image_url:"https://images.mymovies.net/images/film/cin/350x522/fid21013.jpg",description:"Release date 17th Jun 2022 \n The definitive origin story of Buzz Lightyear, the hero who inspired the toy, Lightyear follows the legendary Space Ranger after he is marooned on a hostile planet 4.2 million light-years from Earth alongside his commander and their crew.",time:"17:24"},
-    {id:1,name:"LIGHTYEAR",image_url:"https://images.mymovies.net/images/film/cin/350x522/fid21013.jpg",description:"Release date 17th Jun 2022 \n The definitive origin story of Buzz Lightyear, the hero who inspired the toy, Lightyear follows the legendary Space Ranger after he is marooned on a hostile planet 4.2 million light-years from Earth alongside his commander and their crew.",time:"17:24"},
-    {id:1,name:"LIGHTYEAR",image_url:"https://images.mymovies.net/images/film/cin/350x522/fid21013.jpg",description:"Release date 17th Jun 2022 \n The definitive origin story of Buzz Lightyear, the hero who inspired the toy, Lightyear follows the legendary Space Ranger after he is marooned on a hostile planet 4.2 million light-years from Earth alongside his commander and their crew.",time:"17:24"},
-    {id:1,name:"LIGHTYEAR",image_url:"https://images.mymovies.net/images/film/cin/350x522/fid21013.jpg",description:"Release date 17th Jun 2022 \n The definitive origin story of Buzz Lightyear, the hero who inspired the toy, Lightyear follows the legendary Space Ranger after he is marooned on a hostile planet 4.2 million light-years from Earth alongside his commander and their crew.",time:"17:24"},
-    {id:1,name:"LIGHTYEAR",image_url:"https://images.mymovies.net/images/film/cin/350x522/fid21013.jpg",description:"Release date 17th Jun 2022 \n The definitive origin story of Buzz Lightyear, the hero who inspired the toy, Lightyear follows the legendary Space Ranger after he is marooned on a hostile planet 4.2 million light-years from Earth alongside his commander and their crew.",time:"17:24"},
-    {id:1,name:"LIGHTYEAR",image_url:"https://images.mymovies.net/images/film/cin/350x522/fid21013.jpg",description:"Release date 17th Jun 2022 \n The definitive origin story of Buzz Lightyear, the hero who inspired the toy, Lightyear follows the legendary Space Ranger after he is marooned on a hostile planet 4.2 million light-years from Earth alongside his commander and their crew.",time:"17:24"},
-    {id:1,name:"LIGHTYEAR",image_url:"https://images.mymovies.net/images/film/cin/350x522/fid21013.jpg",description:"Release date 17th Jun 2022 \n The definitive origin story of Buzz Lightyear, the hero who inspired the toy, Lightyear follows the legendary Space Ranger after he is marooned on a hostile planet 4.2 million light-years from Earth alongside his commander and their crew.",time:"17:24"}]
+    Movies: []
   }
-}
- });
+},
+ methods: {
+        navigateTo (route:any) {
+            this.$router.push(route)
+        },
+        fetchData(){
+          axios.get("http://localhost:3000/movies").then(response=>{
+            this.Movies=response.data
+       console.log("Movies are fetched")
+      })
+        },
+        
+    },
+
+   mounted:function(){
+        this.fetchData() //method1 will execute at pageload
+  },
+ }
+ );
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.holder{
+  width: 70%;
+  margin-left: 250px;;
+}
 .Container{
-display: grid;
+display:inline-block;
+margin-top:20px ;
 }
 .MovieContainer{
     text-align: center;
-    display: grid;
-  height: 600px;
+    display:inline-block;
   
 
-
-  
   width: 280px;
-  margin: 20px auto;
-  margin-top:20px;
-  border-radius:15px;
+  margin: 10px;
+ 
+
   box-shadow: 1px 2px 10px 0px rgba(0,0,0,0.3);
  background: white; /* Old browsers */
 }
@@ -58,7 +71,7 @@ img{
     width:275px ;
     height: 450px;
     border: 2px solid grey  ;
-    border-radius: 15px;
+    
     margin: 0px;
     
 }
@@ -72,13 +85,16 @@ img:hover{
   background-color: yellow;
   color:black;
   
+  
 }
 .MovieName{
-  font-size: 20px;
+  font-size: 15px;
   margin: 0px;
+  
 }
 .Movietime{
 font-size: 15px;
   margin: -0px;
+  
 }
 </style>
