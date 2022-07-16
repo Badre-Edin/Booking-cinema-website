@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1 class="welcome">Welcome to tonight movies</h1>
+    <h1 class="welcome">Welcome to Tonight Movies</h1>
   </div>
 </template>
 
@@ -9,18 +9,19 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'WelcomePage',
-  components: {
-   
+  props: {
+
   },
+
 });
 </script>
 
 <style>
-.welcome{
+.welcome {
   color: rgb(255, 174, 0);
   text-align: center;
   padding-top: 200px;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  font-size: x-large;
+  font-size: xx-large;
 }
 </style>

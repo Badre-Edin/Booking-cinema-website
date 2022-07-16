@@ -16,9 +16,9 @@
             
             <div  class="chairs" v-for="chairNumber in chairs" :key="chairNumber">
                 <div id={{chairNumber}} class="onechair"> 
-                    <v-btn class="buttonNumber">
+                    <button class="buttonNumber">
                         {{chairNumber}}
-                    </v-btn>
+                    </button>
                 </div>
                     
             </div>

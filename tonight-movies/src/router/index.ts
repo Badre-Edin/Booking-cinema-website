@@ -7,6 +7,7 @@ import WelcomePage from '../views/WelcomePage.vue'
 import HomePage from '../views/HomePage.vue'
 import BookingPage from '../views/BookingPage.vue'
 import LogIn from '../views/LogInView.vue'
+import AboutUs from '@/views/AboutUs.vue'
 
 
 const routes: Array<RouteRecordRaw> = [
@@ -48,8 +49,12 @@ const routes: Array<RouteRecordRaw> = [
     path:'/BookingPage',
     name:'BookingPage',
     component:BookingPage,
+  },
+  {
+    path:'/AboutUs',
+    name:'AboutUs',
+    component:AboutUs,
   }
-
 ]
 
 const router = createRouter({
