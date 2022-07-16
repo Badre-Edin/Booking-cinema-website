@@ -1,7 +1,8 @@
 import express, { Request, Response } from 'express';
-import bcrypt, {hash} from "bcrypt"
+import bcrypt from "bcrypt"
 import JsonWebToken from "jsonwebtoken"
 import cors from "cors"
+import cookieParser from "cookie-parser"
 import connection from "./connection"
 
 const app = express();
@@ -9,7 +10,7 @@ const port = 3000;
 const SECRET_JWT_CODE = "psmR3Hu0ihHKfqZymo1m"
 
 app.use(cors())
-
+app.use(cookieParser())
 app.use(express.json())
 
 

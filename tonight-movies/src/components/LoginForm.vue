@@ -1,19 +1,15 @@
 <template>
-  <div class="login">
+  <div id="container1">
     <form @submit.prevent="login">
-      <section>
-        <div class="form-group">
-          <label for="username">Username</label><br />
-          <input class="form-control" placeholder="Enter your name" type="username" required
-            v-model="form.username" /><br />
-          <label for="password">Password</label><br />
-          <input class="form-control" type="password" placeholder="password" required v-model="form.password" /><br />
-          <br />
-          <router-link to="/HomePage" class="btn">Login</router-link>
-        </div>
-      </section>
+      <h1>login to your account</h1>
+      <input type="text" class="field" placeholder="username" required v-model="form.username" />
+      <input type="text" class="field" placeholder="password" required v-model="form.password" />
+      <button type="button" id="login-btn" @click="navigateTo({ name: 'HomePage' })"> login</button>
     </form>
   </div>
+
+
+
 </template>
 
 <script lang="ts">
@@ -40,9 +36,12 @@ export default defineComponent({
         password: this.form.password,
       }
       DataService.access(data)
-      .then((response: ResponseData)=>{
-        
-      })
+        .then((response: ResponseData) => {
+
+        })
+    },
+    navigateTo(route: any) {
+      this.$router.push(route)
     }
   }
 })
@@ -52,51 +51,63 @@ export default defineComponent({
 
 
 <style scoped>
-form {
+* {
+  margin: 0px;
+  padding: 0px;
   text-align: center;
-  padding-top: 200px;
-
-
 }
 
-
-.btn {
-  font-size: large;
-  width: 38.5%;
-  background-color: hwb(242 10% 68% / 0.747);
-  color: white;
-  padding: 14px 20px;
-
-  margin-left: -350px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition-duration: 0.2s;
-  position: absolute;
+body {
+  background-image: url('../images/back.jpg');
+  background-size: cover;
 }
 
-
-
-.btn:hover {
-  background-color: rgba(165, 42, 42, 0.733);
-  color: white;
+#container1 {
+  width: 400px;
+  height: 300px;
+  background-color: white;
+  margin: 150px 500px;
+  padding: 50px;
 }
 
 input {
-  width: 40%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
+  -webkit-appearance: none;
 }
 
-label {
+input:focus {
+  outline: none;
+
+}
+
+.field {
+  display: block;
+  margin: 3% 25%;
+  padding: 10px 20px;
+  border: 1px solid #808080;
+  background-color: #f1f1f1;
+}
+
+.field:focus {
+  background-color: #ffe8a2;
+  border: 2px solid #FFC20E;
+}
+
+h1 {
+  padding: 10%;
+}
+
+#login-btn {
+  background-color: #FFC20E;
+  border-radius: 2px;
+  border: none;
+  padding: 10px 20px;
+  margin: 5% 20%;
+  cursor: pointer;
   color: white;
-  font-size: large;
+}
 
-  margin-right: auto;
-
+#login-btn:hover {
+  background-color: #95771f;
+  transition: 1s ease;
 }
 </style>

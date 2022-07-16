@@ -1,13 +1,16 @@
 <template>
 
-  <nav class="welcomeNavBar">
-    <h1 class="logo">TM Cinema</h1>
-    <div>
-      <router-link to="/" class="navLink">home</router-link> 
-      <router-link to="/signup" class="navLink">signup</router-link>
-      <router-link to="/login" class="navLink">log in </router-link>
-    </div>
-  </nav>
+  <nav id="navbar">
+        <h1 id="logo">logo</h1>
+        
+        
+        <div class="nav-block">
+            <router-link to="/" class="nav-item">home</router-link> 
+            <input class="nav-item" type="button" value="about us"/>
+              <router-link to="/signup" class="nav-item">signup</router-link>  
+              <router-link to="/login" id="login" class="nav-item" >log in </router-link>         
+        </div>
+    </nav>
 
   <router-view />
 </template>
@@ -19,75 +22,37 @@ export default {
 </script>
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  outline: none;
-  border: none;
-  text-decoration: none;
-  transition: .1s linear;
 
+#navbar{
+    width: 100%;
+    height: 50px;
+    background-color: black;
+    position: fixed;
 }
-
-html {
-  font-size: 80%;
-  overflow-x: hidden;
-  scroll-behavior: smooth;
-  scroll-padding-top: 20rem;
+#logo{
+    float: left;
+    color:#fff;
+    margin: 10px;
 }
-
-
-body {
-  position: relative;
-  background-image: url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y2luZW1hfGVufDB8fDB8fA%3D%3D&w=1000&q=80");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-attachment: fixed;
-  padding: 40px;
-  font-family: Arial;
-  text-align: center;
-  vertical-align: top;
-  position: relative;
+.nav-block{
+    float: right;
+    padding: 15px;
 }
-
-.logo {
-  color: rgb(255, 174, 0);
-  margin-top: 0;
-  display: flex;
-  background-size: contain;
-  background-position: 35%;
-  padding: 20px;
-  margin-left: -300px;
-  font-family: 'Courier New', Courier, monospace;
-
+.nav-item{
+    margin: 0px 5px;
+    background-color: transparent;
+    color:white;
+    text-decoration: none;
 }
-
-.welcomeNavBar {
-  position: absolute;
-  background: #831b1b1e;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  justify-content: space-between;
-  font-size: 2rem;
-  color: hsl(0, 0%, 100%);
-  padding: 0.5rem 25%;
-  top: 0;
-  left: 0;
-  right: 0;
+#login{
+    background-color: #FFC20E;
+    padding: 8px 15px;
+    margin:  -8px   7px 7px 0px;
+    float: right;
+    border-radius: 4px;
 }
-
-.navLink {
-  color: white;
-  position: relative;
-  cursor: pointer;
-  margin-left: 200px;
-}
-
-.navLink:hover {
-  position: relative;
-  color: rgb(255, 174, 0);
+#login:hover{
+    background-color: #95771f;
+   transition: 1s ease;
 }
 </style>

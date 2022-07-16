@@ -6,7 +6,7 @@
         <nav class="nav">
           <div class="Search">
             Search
-            <input id="SearchBar" v-model="search" @change="test"/>
+            <input id="SearchBar" v-model="search" @change="test(search)"/>
           </div>
           <div class="Logout">
            <router-link to="/login">Log Out</router-link> 
@@ -29,9 +29,12 @@ export default defineComponent({
       
     }
   },
+  props:{
+    Movies:Array
+  },
   methods:{
-    test:(search:any)=>{
-      console.log(search)
+    test:(text:string)=>{
+      console.log(text)
     }
   }
  });
