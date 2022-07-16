@@ -3,10 +3,10 @@
 
 
 <div class="top">
-    <img :src="`${image_url}`" alt="image"/>
-    <h2 class="MovieName">{{name}}</h2>
-        <h2 class="Movietime">{{time}}</h2>
-        <h2 class="MovieDesc">{{description}}</h2>
+    <img :src="`${onemovie[0].imgurl}`" alt="image"/>
+    <h2 class="MovieName">{{onemovie[0].name}}</h2>
+        <h2 class="Movietime">{{onemovie[0].time}}</h2>
+        <h2 class="MovieDesc">{{onemovie[0].description}}</h2>
 
 </div>
  
@@ -32,6 +32,15 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import axios from 'axios'
+/* type movie = {
+  idmovie:number;
+  name:string;
+  desc:string;
+  imgurl:string;
+  categorie:string;
+}; */
+
 
 export default defineComponent({
   name: 'BookingView',
@@ -45,8 +54,23 @@ export default defineComponent({
     name:"LIGHTYEAR",
     image_url:"https://images.mymovies.net/images/film/cin/350x522/fid21013.jpg",
     description:"Release date 17th Jun 2022 \n The definitive origin story of Buzz Lightyear, the hero who inspired the toy, Lightyear follows the legendary Space Ranger after he is marooned on a hostile planet 4.2 million light-years from Earth alongside his commander and their crew.",
-    time:"17:24"}
+    time:"17:24",
+    onemovie:[{idmovie:0,name:"",time:"",description:"",imgurl:"",categorie:""}]
+    
+    }
+  },
 
+  methods:{
+    recievemovie(){
+      axios.get("http://localhost:3000/onemovie").then(response=>{
+            this.onemovie=response.data
+       console.log("Movies are fetched")
+      })
+    }
+  },
+  mounted:function(){
+        this.recievemovie() //method1 will execute at pageload
+        console.log(this.onemovie)
   }
 });
 </script>

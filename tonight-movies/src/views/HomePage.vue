@@ -1,7 +1,7 @@
 <template>
   <div class="homePage">
    
-    <NavBar/>
+    <!-- <NavBar/> -->
     <LeftSideBar/>
     <AllCards/>
     

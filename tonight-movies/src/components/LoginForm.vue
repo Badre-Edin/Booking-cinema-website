@@ -1,11 +1,12 @@
 <template>
-   <div id="container1">
-        <h1>login to your account</h1>
-        <input type="text" class="field" placeholder="username" required v-model="username">
-        <input type="text" class="field" placeholder="password" required v-model="password">
-        <v-btn type="button" id="login-btn" @click="navigateTo({name: 'HomePage'})" > login</v-btn>
+    <div id="background">
+    <div id="container1">
+            <h1>login to your account</h1>
+            <input type="text" class="field" placeholder="username" required v-model="username">
+            <input type="text" id="help" class="field" placeholder="password" required v-model="password">
+            <v-btn type="button" id="login-btn" @click="navigateTo({name: 'HomePage'})" > login</v-btn>
+        </div>
     </div>
-
  
 
 </template>
@@ -55,9 +56,10 @@ export default defineComponent({
     padding: 0px;
     text-align: center;
     }
-body{
-     background-image: url('../images/back.jpg'); 
+ #background{
+    *background-image: url('../images/back.jpg'); 
     background-size: cover;
+    width: 100%;
 }
 #container1{
     width: 400px;
@@ -92,13 +94,17 @@ h1{
     border-radius: 2px;
     border: none;
     padding: 10px 20px;
-    margin: 5% 20% ;
+    margin: 20% ;
+    margin-top:20px;
     cursor: pointer;
     color:white;
 }
 #login-btn:hover{
     background-color: #95771f;
-   transition: 1s ease;
+    transition: 1s ease;
+}
+#help{
+    margin-bottom: 40px;
 }
 
 </style>
