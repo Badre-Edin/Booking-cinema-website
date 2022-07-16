@@ -61,41 +61,37 @@ app.get("/api/users", (req: Request, res: Response) => {
 
 // user login and check if user exist or not
 app.post("/login/user", (req: Request, res: Response) => {
-  if (!req.body.username || !req.body.password) {
-    res.send({ success: false, error: "send needed params" })
-    return
-  }
-  const sql = `SELECT password FROM USERS WHERE username=?;`
-  connection.query(sql, [req.body.username], (err: any, results: any) => {
+
+  const sql = `SELECT * FROM USERS WHERE username=?;`
+  connection.query(sql, [req.body.username], (err: any, data: any) => {
 
     if (err) {
       console.log(err)
     }
-    const hash = results[0].password;
-    //  if (!results) {
-    //     res.send({ success: false, error: "User does not exist" })
-    //   }
+
+    if (!data.length) {
+      return res.status(401).send({
+        msg: 'Username is incorrect!'
+      });
+    }
+    const hash = data[0]['password'];
     bcrypt.compare(req.body.password, hash, (err, result) => {
       if (err) {
-        res.send({
-          message: 'failed',
-          statusCode: 500,
-          data: err
+        res.status(500).send({
+          message: 'failed'
         })
       }
       if (result) {
-        const token = JsonWebToken.sign({ username: results.username, email: results.email }, SECRET_JWT_CODE)
-        res.send({
-          message: 'Success',
-          statusCode: 200,
-          data: { token: token }
+        const token = JsonWebToken.sign({ username: data[0].username, idusers: data[0].idusers }, SECRET_JWT_CODE)
+        res.status(200).send({
+          message: 'Logged in',
+          token: token,
+          user: data[0]
         })
       }
       else {
-        res.send({
-          message: 'failed',
-          statusCode: 500,
-          data: err
+        res.status(401).send({
+          message: 'Password is incorrect'
         })
       }
     })

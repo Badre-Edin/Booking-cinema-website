@@ -1,5 +1,6 @@
 <template>
-
+   
+   
   <nav id="navbar">
     <h1 id="logo">logo</h1>
 
@@ -31,7 +32,7 @@ export default {
   justify-content: center;
   font-size: 1.4rem;
   color: white;
-  padding: 20px;
+  padding: 15px;
   font-family: Arial;
   text-align: center;
   vertical-align: top;
@@ -71,8 +72,10 @@ export default {
   border-radius: 4px;
 }
 
-#login:hover {
-  background-color: #95771f;
+.login:hover {
+  background-color: #FFC20E;
   transition: 1s ease;
+  color: #030303;
 }
+
 </style>

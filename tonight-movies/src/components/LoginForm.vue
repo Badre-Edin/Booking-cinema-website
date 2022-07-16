@@ -109,7 +109,7 @@ h1 {
 }
 
 #login-btn:hover {
-  background-color: #95771f;
+  background-color: #0c0c0c;
   transition: 1s ease;
 }
 </style>
