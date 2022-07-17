@@ -17,9 +17,9 @@
 <script lang="ts">
 
 import { defineComponent } from 'vue';
-import DataService from '@/services/DataService';
-import ResponseData from '@/types/ResponseData';
-import User from '@/types/User';
+import DataService from '../services/DataService';
+import ResponseData from '../types/ResponseData';
+import User from '../types/User';
 
 export default defineComponent({
   name: 'LoginForm',

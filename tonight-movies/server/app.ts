@@ -41,6 +41,7 @@ app.post("/signup/user", (req: Request, res: Response) => {
       console.log(error)
     }
     else {
+      //pass variables that we want to store in the JWT token
       const token = JsonWebToken.sign({ username: results.username, email: results.email }, SECRET_JWT_CODE)
       res.status(201).send({ success: true, token: token })
     }
@@ -82,7 +83,10 @@ app.post("/login/user", (req: Request, res: Response) => {
         })
       }
       if (result) {
-        const token = JsonWebToken.sign({ username: data[0].username, idusers: data[0].idusers }, SECRET_JWT_CODE)
+        //pass variables that we want to store in the JWT token
+        const token = JsonWebToken.sign({ username: data[0].username, idusers: data[0].idusers }, SECRET_JWT_CODE, {
+          expiresIn: '7d'
+        })
         res.status(200).send({
           message: 'Logged in',
           token: token,

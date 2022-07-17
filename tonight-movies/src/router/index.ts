@@ -1,7 +1,5 @@
 
 import SignUpview from '../views/SignUp_View.vue'
-
-
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import WelcomePage from '../views/WelcomePage.vue'
 import HomePage from '../views/HomePage.vue'
