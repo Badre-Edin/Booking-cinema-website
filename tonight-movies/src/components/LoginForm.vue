@@ -4,7 +4,7 @@
             <h1>login to your account</h1>
             <input type="text" class="field" placeholder="username" required v-model="form.username"/>
             <input type="text" id="help" class="field" placeholder="password" required v-model="form.password"/>
-            <button type="button" id="login-btn" @click="navigateTo({name: 'HomePage'})" > login</button>
+            <button type="button" id="login-btn" v-on:click="login()" > login</button>
         </div>
     </div>
  
