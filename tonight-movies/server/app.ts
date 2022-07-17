@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import bcrypt from "bcryptjs"
+import bcrypt from "bcrypt"
 import JsonWebToken from "jsonwebtoken"
 import cors from "cors"
 import cookieParser from "cookie-parser"
@@ -36,12 +36,24 @@ app.get("/movies", (req: Request, res: Response) => {
     }
   })
 })
+app.put("/movies",(req:Request,res:Response)=>{
+  console.log("im inside update")
+  //req.body should be the useraccount id ,and it will change the user movie foreign key with the movie id
+  console.log(req.body)
+  const sqlupdate =`UPDATE movies SET ?="reserved" where idmovie=? ;`
+  connection.query(sqlupdate,[req.body.data.chair,req.body.data.idmovie],function(error,results){
+    if(error){res.status(500).send(error);}
+    else{
+      res.send("updated onemovie succesfully")
+    }
+  })
+})
 app.put("/onemovie",(req:Request,res:Response)=>{
   console.log("im inside update")
   //req.body should be the useraccount id ,and it will change the user movie foreign key with the movie id
   console.log(req.body)
-  const sqlupdate =`UPDATE onemovie SET idmovie =?, name=?, description=? ,time=?, imgurl=? ,categorie=? WHERE line=0;`
-  connection.query(sqlupdate,[req.body.idmovie,req.body.name,req.body.description,req.body.time,req.body.imgurl,req.body.categorie],function(error,results){
+  const sqlupdate =`UPDATE onemovie SET idmovie =?, name=?, description=? ,time=?, imgurl=? ,categorie=? ,chair1=?,chair2=?,chair3=?,chair4=?,chair5=? WHERE line=0;`
+  connection.query(sqlupdate,[req.body.idmovie,req.body.name,req.body.description,req.body.time,req.body.imgurl,req.body.categorie,req.body.chair1,req.body.chair2,req.body.chair3,req.body.chair4,req.body.chair5],function(error,results){
     if(error){res.status(500).send(error);}
     else{
       res.send("updated onemovie succesfully")
@@ -68,39 +80,59 @@ app.post("/signup/user", (req: Request, res: Response) => {
     }
   })
 })
-// app.get("/api/users",(req:Request,res:Response)=>{
-//   const sql="SELECT * FROM USERS;"
-//   connection.query(sql,(err,results)=>{
-//     if(err){
-//       console.log(err)
-//     }
-//     else{
-//       res.status(200).send(results)
-//     }
-//   })
-// })
-
-// user login and check if user exist or not
-app.post("/login/user", (req: Request, res: Response) => {
-  if (!req.body.username || !req.body.password) {
-    res.send({ success: false, error: "send needed params" })
-    return
-  }
-  const sql = `SELECT * FROM USERS WHERE username=? AND password=? ;`
-  connection.query(sql, [req.body.username, req.body.password], (err, results) => {
-
-    if (!results) {
-      res.send({ success: false, error: "User does not exist" })
-    }
-    else if (!bcrypt.compareSync(req.body.password, results.hash)) {
-      res.json({ success: false, error: "Wrong password" })
+// get all users
+app.get("/api/users", (req: Request, res: Response) => {
+  const sql = "SELECT * FROM USERS;"
+  connection.query(sql, (err, results) => {
+    if (err) {
+      console.log(err)
     }
     else {
-      const token = JsonWebToken.sign({ username: results.username }, SECRET_JWT_CODE)
-      res.json({ success: true, token: token, })
+      res.status(200).send(results)
     }
   })
 })
+
+// user login and check if user exist or not
+app.post("/login/user", (req: Request, res: Response) => {
+
+  const sql = `SELECT * FROM USERS WHERE username=?;`
+  connection.query(sql, [req.body.username], (err: any, data: any) => {
+
+    if (err) {
+      console.log(err)
+    }
+
+    if (!data.length) {
+      return res.status(401).send({
+        msg: 'Username is incorrect!'
+      });
+    }
+    const hash = data[0]['password'];
+    bcrypt.compare(req.body.password, hash, (err, result) => {
+      if (err) {
+        res.status(500).send({
+          message: 'failed'
+        })
+      }
+      if (result) {
+        const token = JsonWebToken.sign({ username: data[0].username, idusers: data[0].idusers }, SECRET_JWT_CODE)
+        res.status(200).send({
+          message: 'Logged in',
+          token: token,
+          user: data[0]
+        })
+      }
+      else {
+        res.status(401).send({
+          message: 'Password is incorrect'
+        })
+      }
+    })
+  })
+})
+
+
 app.put("/api",(req:Request,res:Response)=>{
   console.log("im inside update")
   //req.body should be the useraccount id ,and it will change the user movie foreign key with the movie id
@@ -113,9 +145,9 @@ app.put("/api",(req:Request,res:Response)=>{
     }
   })
 })
-app.get("/api/chair", (req: Request, res: Response) => {
-  const sql = "SELECT * FROM chairs;"
-  connection.query(sql, (err, results) => {
+app.get("/api/chairs", (req: Request, res: Response) => {
+  const sql = "SELECT * FROM chairs where chair_fk=?;"
+  connection.query(sql,req.body.data.idmovie, (err, results) => {
     if (err) {
       console.log(err)
     }

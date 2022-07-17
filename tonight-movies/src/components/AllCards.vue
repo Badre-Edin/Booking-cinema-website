@@ -61,7 +61,7 @@ export default defineComponent({
   padding:0;
 }
 .holder{
-  width: 80%;
+  width: 85%;
   float: right;
   margin-left: 100px;
 

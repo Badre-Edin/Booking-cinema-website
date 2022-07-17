@@ -1,11 +1,14 @@
 <template>
     <div id="background">
     <div id="container1">
+        <form @submit.prevent="login">
             <h1>login to your account</h1>
-            <input type="text" class="field" placeholder="username" required v-model="username">
-            <input type="text" id="help" class="field" placeholder="password" required v-model="password">
-            <v-btn type="button" id="login-btn" @click="navigateTo({name: 'HomePage'})" > login</v-btn>
+            <input type="text" class="field" placeholder="username" required v-model="form.username">
+            <input type="text" id="help" class="field" placeholder="password" required v-model="form.password">
+            <button type="button" id="login-btn" @click="navigateTo({ name: 'HomePage' })"> login</button>
+        </form>
         </div>
+        
     </div>
  
 
@@ -14,33 +17,35 @@
 <script lang="ts">
 
 import { defineComponent } from 'vue';
+import DataService from '../services/DataService';
+import ResponseData from '../types/ResponseData';
+import User from '../types/User';
 
 export default defineComponent({
   name: 'LoginForm',
- 
-     
-      
-      
-  props: {
-    Username: String,
-    Password: String,
-   
-  },
   data() {
     return {
-      username: String,
-      password: String,
-     
-      error: String,
-
+      form: {
+        username: "",
+        password: "",
+      } as User,
     }
   },
-
   methods: {
-        navigateTo (route:any) {
-            this.$router.push(route)
-        }
+    login() {
+      let data = {
+        username: this.form.username,
+        password: this.form.password,
+      }
+      DataService.access(data)
+        .then((response: ResponseData) => {
+
+        })
+    },
+    navigateTo(route: any) {
+      this.$router.push(route)
     }
+  }
 })
 
 
@@ -61,18 +66,26 @@ export default defineComponent({
     background-size: cover;
     width: 100%;
 }
-#container1{
-    width: 400px;
-    height: 300px;
-    background-color: white;
-    margin: 150px 500px;
-    padding: 50px;
+
+body {
+  background-image: url('../images/back.jpg');
+  background-size: cover;
 }
-input{
-    -webkit-appearance: none;
+
+#container1 {
+  width: 400px;
+  height: 300px;
+  background-color: white;
+  margin: 150px 500px;
+  padding: 50px;
 }
+
+input {
+  -webkit-appearance: none;
+}
+
 input:focus {
-    outline: none; 
+  outline: none;
 
 }
 .field{
@@ -107,4 +120,27 @@ h1{
     margin-bottom: 40px;
 }
 
+.field:focus {
+  background-color: #ffe8a2;
+  border: 2px solid #FFC20E;
+}
+
+h1 {
+  padding: 10%;
+}
+
+#login-btn {
+  background-color: #FFC20E;
+  border-radius: 2px;
+  border: none;
+  padding: 10px 20px;
+  margin: 5% 20%;
+  cursor: pointer;
+  color: white;
+}
+
+#login-btn:hover {
+  background-color: #0c0c0c;
+  transition: 1s ease;
+}
 </style>

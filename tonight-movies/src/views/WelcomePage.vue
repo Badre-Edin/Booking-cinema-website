@@ -1,15 +1,15 @@
 <template>
-<div>
-       <nav id="navbar">
+ <div>
+
+    <nav id="navbar">
           <h1 id="logo">logo</h1>
-          
           <router-link to="/login" id="login" class="nav-item" >log in </router-link> 
           
           <div class="nav-block">
               <input class="nav-item" type="button" value="movies">
-              <input class="nav-item" type="button" value="about us">
+              <a href='#des' class="nav-item" >about us</a>
              
-              <router-link to="/signup" class="nav-item">signup</router-link>            
+              <router-link to="/signup" class="nav-item">signup</router-link>             
           </div>
       </nav>
       <div id="hero-sec">
@@ -19,13 +19,11 @@
                   <h3>wanna movie</h3>
                   <h1>make your watching experience</h1>
                   <h1 id="change">more enjoyable</h1>
+                  <p id="hero-des">
+                join us and be one of our large community to make unforgetable memories while you watching your favourite movie 
+                </p>
               </div>
-              <div id="searchbar">
-                  <div id="search-btn">
-                      <img src="../images/search.png" alt="">
-                  </div>
-                  <input type="text" name="" id="search-in" placeholder="search for movie">
-              </div>
+              
           </div>
       </div>    
       <div id="description">
@@ -38,7 +36,7 @@
           <p class="des-text">don't lose this opportunity and be one of our lovely costumers</p>
         </div>
       </div>
-</div> 
+</div>
 </template>
 
 <script lang="ts">
@@ -46,9 +44,10 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'WelcomePage',
-  components: {
-   
+  props: {
+
   },
+
 });
 </script>
 
@@ -58,7 +57,7 @@ export default defineComponent({
     padding:0;
 }
 body{
-    height: 2000px;
+    height: auto;
     background-color: #2B343E;
 }
 input{
@@ -106,6 +105,7 @@ input:focus {
     background-size: cover;
     /*background: linear-gradient(0deg,black,transparent);*/
     padding-top: 400px;
+    
 }
 #gradient{
     width: 100%;
@@ -140,6 +140,7 @@ input:focus {
 #legend{
     color:white;
     margin: 55px;
+    margin-bottom: 0;
 }
 h3{
     font-weight: 200;
@@ -178,5 +179,10 @@ img{
 }
 #des-legend{
   margin:20px;
+}
+#hero-des{
+    color: white;
+    margin-right: 80%;
+   opacity: 75%; 
 }
 </style>

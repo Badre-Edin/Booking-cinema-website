@@ -1,28 +1,26 @@
 <template>
-<div>
-    <div id="background"></div>
-    <div id="content-log">
-        <div id="holder">
-            <h1 class="legend">welcome to tonight movies</h1> 
-            <p id="hero">join us and sign up now to make your watching experience more wonderful </p>
-            <label for="username">Username</label>
-            <input class="field" placeholder="enter your name" required v-model="user.username"
-                name="username" />
-            <label for="email">Email</label>
-            <input class="field" placeholder="Enter your email" required v-model="user.email"
-                name="email" />
-            <input type="date" id="date"  class="field" placeholder="date naissance">
-            
-            <label for="password">Password</label>
-            <input class="field" type="password" placeholder="Password" required v-model="user.password"
-                name="password" />
-
-            <input  class="field" type="password" placeholder="confirm password">
-            
-            <button @click="saveUser"  @dblclick="navigateTo({name: 'login'})" id="signup-btn" type="submit">SignUp</button>
+    <div>
+        <div id="background"></div>
+        <div id="content-log">
+            <div id="holder">
+                <h1 class="legend">welcome to tonight movies</h1>
+                <p id="hero">join us and sign up now to make your watching experience more wonderful </p>
+                <label for="username">Username</label>
+                <input class="field" placeholder="enter your name" required v-model="user.username" name="username" />
+                <label for="email">Email</label>
+                <input class="field" placeholder="Enter your email" required v-model="user.email" name="email" />
+                <label for="date">Birthday</label>
+                <input type="date" id="date" class="field" placeholder="date naissance" />
+                <label for="password">Password</label>
+                <input class="field" type="password" placeholder="Password" required v-model="user.password"
+                    name="password" />
+                <label for="confirmPassword">Confirm Password</label>
+                <input class="field" type="password" placeholder="confirm password" />
+                <button @click="saveUser ; navigateTo({ name: 'login' })"  id="signup-btn"
+                    type="submit">SignUp</button>
+            </div>
         </div>
     </div>
-</div>
 
 </template>
 
@@ -31,6 +29,7 @@ import { defineComponent } from 'vue';
 import DataService from '../services/DataService';
 import User from '../types/User';
 import ResponseData from '../types/ResponseData';
+
 export default defineComponent({
     name: 'SignUpForm',
     data() {
@@ -59,15 +58,17 @@ export default defineComponent({
                 .catch((e: Error) => {
                     console.log(e);
                 });
-        }
-    },
-     navigateTo (route:any) {
+        },
+        navigateTo(route: any) {
             this.$router.push(route)
         }
+    }
+
 });
 </script>
 
 <style>
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@600&display=swap');
 
 *{
@@ -87,18 +88,21 @@ input:focus {
     background-size: cover;
     width: 70%;
     float: right;
-    height: 750px;
+    height: 800px;
 }
 #content-log{
     background-color:white;
     width: 30%;
     float:left;
-    height: 750px;
+    height: 800px;
     position: relative;
-    margin-top: 50px;
+    
 }
 #holder{
-    padding: 20%;
+    padding-left:25%;
+    padding-top: 20%;
+    padding-bottom: 10%;
+    padding-right:25%;
 }
 .legend{
     font-family: 'Roboto', sans-serif;
