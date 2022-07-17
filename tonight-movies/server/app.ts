@@ -6,14 +6,24 @@ import cookieParser from "cookie-parser"
 import connection from "./connection"
 
 const app = express();
-const port = 3000;
+const port = 3001;
 const SECRET_JWT_CODE = "psmR3Hu0ihHKfqZymo1m"
 
 app.use(cors())
 app.use(cookieParser())
 app.use(express.json())
 
-
+app.get("/onemovie", (req: Request, res: Response) => {
+  const sql = "SELECT * FROM onemovie where line=0 ;"
+  connection.query(sql, (err, results) => {
+    if (err) {
+      console.log(err)
+    }
+    else {
+      res.status(200).send(results)
+    }
+  })
+})
 // fetch all the movies
 app.get("/movies", (req: Request, res: Response) => {
   const sql = "SELECT * FROM MOVIES;"
@@ -23,6 +33,18 @@ app.get("/movies", (req: Request, res: Response) => {
     }
     else {
       res.status(200).send(results)
+    }
+  })
+})
+app.put("/onemovie",(req:Request,res:Response)=>{
+  console.log("im inside update")
+  //req.body should be the useraccount id ,and it will change the user movie foreign key with the movie id
+  console.log(req.body)
+  const sqlupdate =`UPDATE onemovie SET idmovie =?, name=?, description=? ,time=?, imgurl=? ,categorie=? WHERE line=0;`
+  connection.query(sqlupdate,[req.body.idmovie,req.body.name,req.body.description,req.body.time,req.body.imgurl,req.body.categorie],function(error,results){
+    if(error){res.status(500).send(error);}
+    else{
+      res.send("updated onemovie succesfully")
     }
   })
 })
@@ -101,8 +123,42 @@ app.post("/login/user", (req: Request, res: Response) => {
     })
   })
 })
+app.put("/api",(req:Request,res:Response)=>{
+  console.log("im inside update")
+  //req.body should be the useraccount id ,and it will change the user movie foreign key with the movie id
+  console.log(req.body)
+  const sqlupdate =`UPDATE users SET idmovie =${req.body.idmovie}  WHERE id=${req.body.iduser};`
+  connection.query(sqlupdate,function(error,results){
+    if(error){res.status(500).send(error);}
+    else{
+      res.send("User linked to a movie successfully")
+    }
+  })
+})
+app.get("/api/chair", (req: Request, res: Response) => {
+  const sql = "SELECT * FROM chairs;"
+  connection.query(sql, (err, results) => {
+    if (err) {
+      console.log(err)
+    }
+    else {
+      res.status(200).send(results)
+    }
+  })
+})
+app.put("/api/chair",(req:Request,res:Response)=>{
+  console.log("im inside update chair")
+  //req.body should be the useraccount id ,and it will change the user movie foreign key with the movie id
+  console.log(req.body)
+  const sqlupdate =`UPDATE chairs SET ${req.body.chair}=reserved  WHERE idmovie=${req.body.idmovie};`
+  connection.query(sqlupdate,function(error,results){
+    if(error){res.status(500).send(error);}
+    else{
+      res.send("chair updated successfully")
 
-
+    }
+  })
+})
 
 app.listen(port, () => {
   console.log(`Timezones by location application is running on port ${port}.`);

@@ -1,10 +1,10 @@
 <template>
   <div class="homePage">
    
-    <NavBar />
-    <LeftSideBar />
-    <AllCards />
-
+    <!-- <NavBar/> -->
+    <LeftSideBar/>
+    <AllCards/>
+    
   </div>
 </template>
 

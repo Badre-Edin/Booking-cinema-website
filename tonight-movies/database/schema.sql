@@ -21,14 +21,22 @@ USE `cinemadb` ;
 CREATE TABLE IF NOT EXISTS `movies` (
   `idmovie` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(100) ,
-  `desc` VARCHAR(800) ,
+  `description` VARCHAR(800) ,
   `time` VARCHAR(50) ,
   `imgurl` VARCHAR(255) ,
   `categorie` VARCHAR(45) ,
   PRIMARY KEY (`idmovie`));
 
-
-
+CREATE TABLE IF NOT EXISTS `onemovie` (
+  `line` int not null ,
+  `idmovie` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(100) ,
+  `description` VARCHAR(800) ,
+  `time` VARCHAR(50) ,
+  `imgurl` VARCHAR(255) ,
+  `categorie` VARCHAR(45) ,
+  PRIMARY KEY (`idmovie`));
+insert into onemovie VALUES (0,0,"","","","","");
 -- -----------------------------------------------------
 -- Table `cinemadb`.`users`
 -- -----------------------------------------------------
@@ -48,39 +56,11 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 
 CREATE TABLE IF NOT EXISTS chairs(
-  idchairs INT NOT NULL AUTO_increment ,
-  chair1 VARCHAR(45) NOT NULL default 'empty',
-  chair2 VARCHAR(45) NOT NULL default 'empty',
-  chair3 VARCHAR(45) NOT NULL default 'empty',
-  chair4 VARCHAR(45) NOT NULL default 'empty',
-  chair5 VARCHAR(45) NOT NULL default 'empty',
-  chair6 VARCHAR(45) NOT NULL default 'empty',
-  chair7 VARCHAR(45) NOT NULL default 'empty',
-  chair8 VARCHAR(45) NOT NULL default 'empty',
-  chair9 VARCHAR(45) NOT NULL default 'empty',
-  chair10 VARCHAR(45) NOT NULL default 'empty',
-  chair11 VARCHAR(45) NOT NULL default 'empty',
-  chair12 VARCHAR(45) NOT NULL default 'empty',
-  chair13 VARCHAR(45) NOT NULL default 'empty',
-   chair14 VARCHAR(45) NOT NULL default 'empty',
-  chair15 VARCHAR(45) NOT NULL default 'empty',
-  chair16 VARCHAR(45) NOT NULL default 'empty',
-  chair17 VARCHAR(45) NOT NULL default 'empty',
-  chair18 VARCHAR(45) NOT NULL default 'empty',
-  chair19 VARCHAR(45) NOT NULL default 'empty',
-  chair20 VARCHAR(45) NOT NULL default 'empty',
-  chair21 VARCHAR(45) NOT NULL default 'empty',
-  chair22 VARCHAR(45) NOT NULL default 'empty',
-  chair23 VARCHAR(45) NOT NULL default 'empty',
-  chair24 VARCHAR(45) NOT NULL default 'empty',
-   chair25 VARCHAR(45) NOT NULL default 'empty',
-  chair26 VARCHAR(45) NOT NULL default 'empty',
-  chair27 VARCHAR(45) NOT NULL default 'empty',
-  chair28 VARCHAR(45) NOT NULL default 'empty',
-  chair29 VARCHAR(45) NOT NULL default 'empty',
-  chair30 VARCHAR(45) NOT NULL default 'empty',
-
-  idmovie INT,
+  `idchairs` INT NOT NULL ,
+  `chairnumber` VARCHAR(50) NOT NULL,
+  `val` VARCHAR(50)  NOT NULL,
+  `color` VARCHAR(50)  NOT NULL,
+  `idmovie` INT NOT NULL,
  PRIMARY KEY (idchairs),
    CONSTRAINT pk1
     FOREIGN KEY (idmovie)
@@ -90,7 +70,73 @@ CREATE TABLE IF NOT EXISTS chairs(
 
 );
 
-INSERT INTO movies VALUES (0,"MINIONS: THE RISE OF GRU", "Release date 1st Jul 2022 This summer, from the biggest global animated franchise in history, comes the origin story of how the worlds greatest supervillain first met his iconic Minions. ","18:15" ,"https://images.mymovies.net/images/film/cin/350x522/fid20178.jpg","comedie");
-INSERT INTO movies VALUES (2,"THOR: LOVE AND THUNDER", "Thor embarks on a journey unlike anything he's ever faced -- a quest for inner peace. However, his retirement gets interrupted by Gorr the God Butcher, a galactic killer who seeks the extinction of the gods.","20:15" ,"https://images.mymovies.net/images/film/cin/350x522/fid21005.jpg","action");
-INSERT INTO movies VALUES (3,"JURASSIC WORLD: DOMINION", "This summer, experience the epic conclusion to the Jurassic era as two generations unite for the first time.","19:15" ,"https://images.mymovies.net/images/film/cin/350x522/fid21012.jpg","adventure");
-INSERT INTO movies VALUES (4,"WHERE THE CRAWDADS SING", "From the best-selling novel comes a captivating mystery. Where the Crawdads Sing tells the story of Kya, an abandoned girl who raised herself to adulthood in the dangerous marshlands of North Carolina.","21:15" ,"http://images.mymovies.net/images/film/cin/350x522/fid21015.jpg","drama");
+
+INSERT INTO movies VALUES (1000,"MINIONS: THE RISE OF GRU", "Release date 1st Jul 2022 This summer, from the biggest global animated franchise in history, comes the origin story of how the worlds greatest supervillain first met his iconic Minions. ","18:15" ,"https://images.mymovies.net/images/film/cin/350x522/fid20178.jpg","comedie");
+INSERT INTO movies VALUES (1001,"THOR: LOVE AND THUNDER", "Thor embarks on a journey unlike anything he's ever faced -- a quest for inner peace. However, his retirement gets interrupted by Gorr the God Butcher, a galactic killer who seeks the extinction of the gods.","20:15" ,"https://images.mymovies.net/images/film/cin/350x522/fid21005.jpg","action");
+INSERT INTO movies VALUES (1002,"JURASSIC WORLD: DOMINION", "This summer, experience the epic conclusion to the Jurassic era as two generations unite for the first time.","19:15" ,"https://images.mymovies.net/images/film/cin/350x522/fid21012.jpg","adventure");
+INSERT INTO movies VALUES (1003,"WHERE THE CRAWDADS SING", "From the best-selling novel comes a captivating mystery. Where the Crawdads Sing tells the story of Kya, an abandoned girl who raised herself to adulthood in the dangerous marshlands of North Carolina.","21:15" ,"http://images.mymovies.net/images/film/cin/350x522/fid21015.jpg","drama");
+
+
+/* 
+insert into chairs  (idchair,chairnumber,val,color) values(1,"1","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(2,"2","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(3,"3","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(4,"4","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(5,"5","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(6,"6","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(7,"7","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(8,"8","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(9,"9","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(10,"10","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(11,"11","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(12,"12","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(13,"13","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(14,"14","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(15,"15","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(16,"16","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(17,"17","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(18,"18","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(19,"19","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(20,"20","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(21,"21","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(22,"22","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(23,"23","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(24,"24","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(25,"25","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(26,"26","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(27,"27","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(28,"28","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(29,"29","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(30,"30","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(31,"31","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(32,"32","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(33,"33","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(34,"34","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(35,"35","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(36,"36","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(37,"37","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(38,"38","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(39,"39","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(40,"40","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(41,"41","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(42,"42","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(43,"43","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(44,"44","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(45,"45","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(46,"46","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(47,"47","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(48,"48","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(49,"49","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(50,"50","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(51,"51","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(52,"52","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(53,"53","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(54,"54","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(55,"55","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(56,"56","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(57,"57","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(58,"58","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(59,"59","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(60,"60","empty","green");
+insert into chairs  (idchair,chairnumber,val,color) values(61,"61","empty","green");
+ */

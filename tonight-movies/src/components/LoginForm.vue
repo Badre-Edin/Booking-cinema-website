@@ -1,16 +1,13 @@
 <template>
-  <div id="container1">
-    <form @submit.prevent="login">
-      <h1>login to your account</h1>
-      <label for="username">Username</label><br />
-      <input type="text" class="field" placeholder="username" required v-model="form.username" /><br />
-      <label for="password">Password</label><br />
-      <input type="text" class="field" placeholder="password" required v-model="form.password" />
-      <button type="button" id="login-btn" @click="navigateTo({ name: 'HomePage' })"> login</button>
-    </form>
-  </div>
-
-
+    <div id="background">
+    <div id="container1">
+            <h1>login to your account</h1>
+            <input type="text" class="field" placeholder="username" required v-model="form.username"/>
+            <input type="text" id="help" class="field" placeholder="password" required v-model="form.password"/>
+            <button type="button" id="login-btn" @click="navigateTo({name: 'HomePage'})" > login</button>
+        </div>
+    </div>
+ 
 
 </template>
 
@@ -53,10 +50,18 @@ export default defineComponent({
 
 
 <style scoped>
-* {
-  margin: 0px;
-  padding: 0px;
-  text-align: center;
+
+
+
+*{
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+    }
+ #background{
+    *background-image: url('../images/back.jpg'); 
+    background-size: cover;
+    width: 100%;
 }
 
 body {
@@ -80,13 +85,36 @@ input:focus {
   outline: none;
 
 }
-
-.field {
-  display: block;
-  margin: 3% 25%;
-  padding: 10px 20px;
-  border: 1px solid #808080;
-  background-color: #f1f1f1;
+.field{
+    display: block;
+    margin: 3% 25%;
+    padding: 10px 20px ;
+    border:1px solid #808080;
+    background-color: #f1f1f1;
+}
+.field:focus{
+    background-color: #ffe8a2;
+    border: 2px solid #FFC20E;
+}
+h1{
+    padding: 10%;
+}
+#login-btn{
+    background-color: #FFC20E;
+    border-radius: 2px;
+    border: none;
+    padding: 10px 20px;
+    margin: 20% ;
+    margin-top:20px;
+    cursor: pointer;
+    color:white;
+}
+#login-btn:hover{
+    background-color: #95771f;
+    transition: 1s ease;
+}
+#help{
+    margin-bottom: 40px;
 }
 
 .field:focus {

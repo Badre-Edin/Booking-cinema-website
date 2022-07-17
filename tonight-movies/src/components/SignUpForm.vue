@@ -1,5 +1,5 @@
 <template>
-    <div>
+   
         <div id="background"></div>
         <div id="content-log">
             <div id="holder">
@@ -16,19 +16,19 @@
                     name="password" />
                 <label for="confirmPassword">Confirm Password</label>
                 <input class="field" type="password" placeholder="confirm password" />
-                <button @click="saveUser" @dblclick="navigateTo({ name: 'login' })" id="signup-btn"
+                <button v-on:click="saveUser" @click="navigateTo({ name: 'login' })" id="signup-btn"
                     type="submit">SignUp</button>
             </div>
         </div>
-    </div>
+   
 
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import DataService from '@/services/DataService';
-import User from '@/types/User';
-import ResponseData from '@/types/ResponseData';
+import DataService from '../services/DataService';
+import User from '../types/User';
+import ResponseData from '../types/ResponseData';
 
 export default defineComponent({
     name: 'SignUpForm',

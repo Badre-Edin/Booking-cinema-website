@@ -5,15 +5,17 @@
        
         <img :src="`${movie.imgurl}`"
   alt="image"/>
+  <div id="film-des">
     <h2 class="MovieName">{{movie.name}}</h2>
         <h2 class="Movietime">{{movie.time}}</h2>
-       
-       <v-btn class="watch"  @click="navigateTo({name: 'BookingPage'})"> Watch </v-btn> 
+   </div>    
+      <v-btn class="watch"  @click="navigateTo({name: 'BookingPage' });sendMovie(movie)"> Watch </v-btn> 
     </div>
 
  </div>
 </div>
 </template>
+
 
 <script lang="ts">
  import { defineComponent } from 'vue';
@@ -22,7 +24,8 @@ export default defineComponent({
   name: 'AllCards',
   data() {
   return {
-    Movies: []
+    Movies: [],
+    
   }
 },
  methods: {
@@ -35,6 +38,12 @@ export default defineComponent({
        console.log("Movies are fetched")
       })
         },
+        sendMovie(movie:any){
+          console.log(movie)
+          axios.put("http://localhost:3000/onemovie",movie).then(response=>{
+            console.log("movie sended to backend");
+          }) 
+        }
         
     },
 
@@ -47,54 +56,65 @@ export default defineComponent({
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+*{
+  margin:0;
+  padding:0;
+}
 .holder{
-  width: 70%;
-  margin-left: 250px;;
+  width: 80%;
+  float: right;
+  margin-left: 100px;
+
 }
 .Container{
-display:inline-block;
-margin-top:20px ;
+  display:inline-block;
 }
 .MovieContainer{
-    text-align: center;
-    display:inline-block;
-  
-
-  width: 280px;
+  text-align: center;
+  display:inline-block;
+  border:5px solid rgb(190, 189, 189) ;
+  border-radius: 15px;
+  width: 300px;
+  padding: 20px;
   margin: 10px;
- 
-
+  height: 600px;
   box-shadow: 1px 2px 10px 0px rgba(0,0,0,0.3);
- background: white; /* Old browsers */
+  background: white; /* Old browsers */
+}
+.MovieContainer:hover{
+  border: 5px solid #FFC20E;
+  opacity: 80%;
 }
 img{
-    width:275px ;
+    width:  275px ;
     height: 450px;
-    border: 2px solid grey  ;
-    
-    margin: 0px;
-    
-}
-img:hover{
-    background-color: rgb(59, 59, 59);
+    border: 2px solid grey  ;  
+    margin: 10px;  
 }
 .watch{
   width: 280px;
-  margin:0px;
+  margin-bottom: -50px;
   height: 60px;
-  background-color: yellow;
+  padding: 10px 20px;
+  background-color: #FFC20E;
+  border-radius: 3px;
   color:black;
-  
-  
+  color:white; 
+}
+.watch:hover{
+  background-color: #95771f;
+  transition: 1s ease;
 }
 .MovieName{
   font-size: 15px;
   margin: 0px;
-  
 }
 .Movietime{
 font-size: 15px;
   margin: -0px;
-  
+  opacity: 100%;
+}
+#film-des{
+  margin:20px;
 }
 </style>

@@ -1,8 +1,7 @@
 <template>
     <div>
         <h1 class="aboutus">About Us</h1><br />
-        <img class="img" src="https://yc.cldmlk.com/wmezace6a8ycqfbe2gjcg9vn0m/1525668210220_Cinema-Shot.png"
-            alt="cinema" />
+        
     </div>
 </template>
 
@@ -27,7 +26,5 @@ export default defineComponent({
     font-size: xx-large;
 }
 
-.img {
-    margin-left: 400px;
-}
+
 </style>

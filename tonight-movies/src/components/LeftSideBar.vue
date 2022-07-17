@@ -1,18 +1,27 @@
 <template>
  <div id="sidebarleft">
-    <header>
-      <a href="#">Navigation</a>
-    </header>
-    <ul class="nav">
-    <div class= "products" >
-            Booking
-          </div>
-          <div
-            class="products">
-            About Movies
-          </div>
-    </ul>
-  </div>
+    <div id="searchbar">
+      <div id="search-btn">
+        <img src="../images/search.png" alt="">
+      </div>
+      <input type="text" name="" id="search-in" placeholder="search for movie">
+    </div>
+      <h1>categories</h1>
+      <ul id="cat">
+        <li class="cat-item">
+          action
+        </li>
+        <li class="cat-item">
+          adventure
+        </li>
+        <li class="cat-item">
+          comedy
+        </li>
+        <li class="cat-item">
+          drama
+        </li>
+      </ul>
+    </div>
 </template>
 
 <script lang="ts">
@@ -26,10 +35,6 @@ export default defineComponent({
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-a{
-  font-size: 20px;
-  color: white;
-}
 #sidebarleft {
   z-index: 500;
   position: fixed;
@@ -37,25 +42,60 @@ a{
   width: 250px;
   height: 100%;
   margin-top: -90px;
-  padding-top: 90px;
+  padding-top: 150px;
   margin-left: -250px;
   overflow-y: auto;
-  background: rgba(0, 0, 0, 0.7);
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease;
+  background: #3c4754;
   border-radius: 5px;
     text-align: center;
   
 }
-.products , .SellYourproducts{
-  padding: 10px;
-  margin-right: 15px;
-  font-family: 'Roboto', sans-serif;
-  font-weight:800;
-  font-size: 12px;
-  color: grey;
+#searchbar{
+    background-color: white;
+    width: 150px;
+    height: 40px;
+    border-radius: 20px;
+    margin: 0px 0px 0px 50px;
+    box-shadow: 10px #000;
+}
+#search-btn{
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    float:right;
+    background-color:#FFC20E;
+    margin:5px;
+    cursor: pointer;
+}
+#search-in{
+    border: none;
+    width: 40px;
+    height: 30px;
+    margin: 5px 20px;
+}
+.check{
+  width: 20px;
+  height: 20px;
+}
+#cat{
+  margin: 40px;
+  margin-right:0;
+  margin-top: 20px;
+  margin-left: 0;
+}
+.cat-item{
+  list-style-type: none;
+  padding: 20px;
+  padding-left: 70px;
+  color:white;
   cursor: pointer;
+}
+.cat-item:hover{
+  background-color: #484d52;
+}
+h1{
+  margin-left:40px;
+  margin-top:20px;
+  color:white;
 }
 </style>
