@@ -2,12 +2,15 @@
  <div id="sidebarleft">
     <div id="searchbar">
       <div id="search-btn">
-        <img src="../images/search.png" alt="">
+        <img src="../images/search.png" alt=""/>
       </div>
-      <input type="text" name="" id="search-in" placeholder="search for movie">
+      <input type="text" name="" id="search-in" placeholder="search for movie"/>
     </div>
       <h1>categories</h1>
       <ul id="cat">
+        <li class="cat-item">
+          All
+        </li>
         <li class="cat-item">
           action
         </li>
@@ -39,7 +42,7 @@ export default defineComponent({
   z-index: 500;
   position: fixed;
   left: 250px;
-  width: 250px;
+  width: 200px;
   height: 100%;
   margin-top: -90px;
   padding-top: 150px;
@@ -55,7 +58,7 @@ export default defineComponent({
     width: 150px;
     height: 40px;
     border-radius: 20px;
-    margin: 0px 0px 0px 50px;
+    margin: 0px 0px 0px 30px;
     box-shadow: 10px #000;
 }
 #search-btn{

@@ -1,6 +1,6 @@
 <template>
-   
-        <div id="background"></div>
+
+    <div id="background">
         <div id="content-log">
             <div id="holder">
                 <h1 class="legend">welcome to tonight movies</h1>
@@ -9,7 +9,7 @@
                 <input class="field" placeholder="enter your name" required v-model="user.username" name="username" />
                 <label for="email">Email</label>
                 <input class="field" placeholder="Enter your email" required v-model="user.email" name="email" />
-                <label for="date">Date</label>
+                <label for="date">Birthday</label>
                 <input type="date" id="date" class="field" placeholder="date naissance" />
                 <label for="password">Password</label>
                 <input class="field" type="password" placeholder="Password" required v-model="user.password"
@@ -20,7 +20,7 @@
                     type="submit">SignUp</button>
             </div>
         </div>
-   
+    </div>
 
 </template>
 
@@ -68,76 +68,90 @@ export default defineComponent({
 </script>
 
 <style>
-
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@600&display=swap');
 
-*{
-margin: 0px;
-padding: 0px;
-text-align: left;
+* {
+    margin: 0px;
+    padding: 0px;
+    text-align: left;
 }
-input{
+
+input {
     -webkit-appearance: none;
 }
+
 input:focus {
-    outline: none; 
+    outline: none;
 
 }
-#background{
+
+#background {
     background-image: url("../images/background.jpg");
     background-size: cover;
     width: 70%;
     float: right;
-    height: 750px;
+    height: 800px;
 }
-#content-log{
-    background-color:white;
+
+#content-log {
+    background-color: white;
     width: 30%;
-    float:left;
-    height: 750px;
+    float: left;
+    height: 800px;
     position: relative;
-    margin-top: 50px;
+
 }
-#holder{
-    padding: 20%;
+
+#holder {
+    padding-left: 25%;
+    padding-top: 20%;
+    padding-bottom: 10%;
+    padding-right: 25%;
 }
-.legend{
+
+.legend {
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
     font-size: 20px;
     padding: 10%;
     padding-left: 0;
 }
-.field{
+
+.field {
     display: block;
     margin: 3% 0;
-    padding: 10px 20px ;
-    border:1px solid #808080;
+    padding: 10px 20px;
+    border: 1px solid #808080;
     background-color: #f1f1f1;
 }
-.field:focus{
+
+.field:focus {
     background-color: #ffe8a2;
     border: 2px solid #FFC20E;
 }
-#hero{
+
+#hero {
     padding: 20%;
     padding-left: 0%;
     padding-top: 0;
 }
-#date{
+
+#date {
     padding: 10px 46px;
 }
-#signup-btn{
+
+#signup-btn {
     background-color: #FFC20E;
     border-radius: 2px;
     border: none;
     padding: 10px 20px;
-    margin: 10% 20% ;
+    margin: 10% 20%;
     cursor: pointer;
-    color:white;
+    color: white;
 }
-#signup-btn:hover{
+
+#signup-btn:hover {
     background-color: #95771f;
-   transition: 1s ease;
+    transition: 1s ease;
 }
 </style>

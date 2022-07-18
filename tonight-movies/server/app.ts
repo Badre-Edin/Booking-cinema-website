@@ -6,7 +6,7 @@ import cookieParser from "cookie-parser"
 import connection from "./connection"
 
 const app = express();
-const port = 3001;
+const port = 3000;
 const SECRET_JWT_CODE = "psmR3Hu0ihHKfqZymo1m"
 
 app.use(cors())
@@ -36,12 +36,24 @@ app.get("/movies", (req: Request, res: Response) => {
     }
   })
 })
+app.put("/movies",(req:Request,res:Response)=>{
+  console.log("im inside update")
+  //req.body should be the useraccount id ,and it will change the user movie foreign key with the movie id
+  console.log(req.body)
+  const sqlupdate =`UPDATE movies SET ?="reserved" where idmovie=? ;`
+  connection.query(sqlupdate,[req.body.data.chair,req.body.data.idmovie],function(error,results){
+    if(error){res.status(500).send(error);}
+    else{
+      res.send("updated onemovie succesfully")
+    }
+  })
+})
 app.put("/onemovie",(req:Request,res:Response)=>{
   console.log("im inside update")
   //req.body should be the useraccount id ,and it will change the user movie foreign key with the movie id
   console.log(req.body)
-  const sqlupdate =`UPDATE onemovie SET idmovie =?, name=?, description=? ,time=?, imgurl=? ,categorie=? WHERE line=0;`
-  connection.query(sqlupdate,[req.body.idmovie,req.body.name,req.body.description,req.body.time,req.body.imgurl,req.body.categorie],function(error,results){
+  const sqlupdate =`UPDATE onemovie SET idmovie =?, name=?, description=? ,time=?, imgurl=? ,categorie=? ,chair1=?,chair2=?,chair3=?,chair4=?,chair5=? WHERE line=0;`
+  connection.query(sqlupdate,[req.body.idmovie,req.body.name,req.body.description,req.body.time,req.body.imgurl,req.body.categorie,req.body.chair1,req.body.chair2,req.body.chair3,req.body.chair4,req.body.chair5],function(error,results){
     if(error){res.status(500).send(error);}
     else{
       res.send("updated onemovie succesfully")
@@ -123,6 +135,7 @@ app.post("/login/user", (req: Request, res: Response) => {
     })
   })
 })
+
 app.put("/api",(req:Request,res:Response)=>{
   console.log("im inside update")
   //req.body should be the useraccount id ,and it will change the user movie foreign key with the movie id
@@ -135,9 +148,9 @@ app.put("/api",(req:Request,res:Response)=>{
     }
   })
 })
-app.get("/api/chair", (req: Request, res: Response) => {
-  const sql = "SELECT * FROM chairs;"
-  connection.query(sql, (err, results) => {
+app.get("/api/chairs", (req: Request, res: Response) => {
+  const sql = "SELECT * FROM chairs where chair_fk=?;"
+  connection.query(sql,req.body.data.idmovie, (err, results) => {
     if (err) {
       console.log(err)
     }
@@ -155,10 +168,10 @@ app.put("/api/chair",(req:Request,res:Response)=>{
     if(error){res.status(500).send(error);}
     else{
       res.send("chair updated successfully")
-
     }
   })
 })
+
 
 app.listen(port, () => {
   console.log(`Timezones by location application is running on port ${port}.`);

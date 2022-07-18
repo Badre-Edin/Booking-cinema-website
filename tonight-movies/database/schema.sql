@@ -25,18 +25,29 @@ CREATE TABLE IF NOT EXISTS `movies` (
   `time` VARCHAR(50) ,
   `imgurl` VARCHAR(255) ,
   `categorie` VARCHAR(45) ,
+  `chair1` VARCHAR(45) default 'empty',
+  `chair2` VARCHAR(45) default 'empty',
+  `chair3` VARCHAR(45) default 'empty',
+  `chair4` VARCHAR(45) default 'empty',
+  `chair5` VARCHAR(45) default 'empty',
+
   PRIMARY KEY (`idmovie`));
 
 CREATE TABLE IF NOT EXISTS `onemovie` (
-  `line` int not null ,
-  `idmovie` INT NOT NULL AUTO_INCREMENT,
+  `line` int not null UNIQUE,
+  `idmovie` INT NOT NULL ,
   `name` VARCHAR(100) ,
   `description` VARCHAR(800) ,
   `time` VARCHAR(50) ,
   `imgurl` VARCHAR(255) ,
   `categorie` VARCHAR(45) ,
+   `chair1` VARCHAR(45) default 'empty',
+  `chair2` VARCHAR(45) default 'empty',
+  `chair3` VARCHAR(45) default 'empty',
+  `chair4` VARCHAR(45) default 'empty',
+  `chair5` VARCHAR(45) default 'empty',
   PRIMARY KEY (`idmovie`));
-insert into onemovie VALUES (0,0,"","","","","");
+insert into onemovie (line,idmovie,name,description,time,imgurl,categorie,chair1,chair2,chair3,chair4,chair5) VALUES (0,0,"","","","","","empty","empty","empty","empty","empty");
 -- -----------------------------------------------------
 -- Table `cinemadb`.`users`
 -- -----------------------------------------------------
@@ -55,30 +66,32 @@ CREATE TABLE IF NOT EXISTS `users` (
     ON UPDATE NO ACTION);
 
 
-CREATE TABLE IF NOT EXISTS chairs(
-  `idchairs` INT NOT NULL ,
-  `chairnumber` VARCHAR(50) NOT NULL,
-  `val` VARCHAR(50)  NOT NULL,
-  `color` VARCHAR(50)  NOT NULL,
-  `idmovie` INT NOT NULL,
- PRIMARY KEY (idchairs),
-   CONSTRAINT pk1
-    FOREIGN KEY (idmovie)
-    REFERENCES cinemadb.movies (idmovie)
+
+/* CREATE TABLE IF NOT EXISTS `cinemadb`.`chairs` (
+  `idchairs` INT NOT NULL AUTO_INCREMENT,
+  `chairnumber` VARCHAR(45) NOT NULL,
+  `color` VARCHAR(45) NOT NULL DEFAULT 'green',
+  `val` VARCHAR(45) NOT NULL DEFAULT 'empty',
+  `chair_fk` INT NOT NULL,
+  PRIMARY KEY (`idchairs`,`chair_fk`),
+  CONSTRAINT `chair_fk`
+    FOREIGN KEY (`chair_fk`)
+    REFERENCES `cinemadb`.`onemovie` (`idmovie`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION
-
-);
+    ON UPDATE NO ACTION); */
 
 
-INSERT INTO movies VALUES (1000,"MINIONS: THE RISE OF GRU", "Release date 1st Jul 2022 This summer, from the biggest global animated franchise in history, comes the origin story of how the worlds greatest supervillain first met his iconic Minions. ","18:15" ,"https://images.mymovies.net/images/film/cin/350x522/fid20178.jpg","comedie");
-INSERT INTO movies VALUES (1001,"THOR: LOVE AND THUNDER", "Thor embarks on a journey unlike anything he's ever faced -- a quest for inner peace. However, his retirement gets interrupted by Gorr the God Butcher, a galactic killer who seeks the extinction of the gods.","20:15" ,"https://images.mymovies.net/images/film/cin/350x522/fid21005.jpg","action");
-INSERT INTO movies VALUES (1002,"JURASSIC WORLD: DOMINION", "This summer, experience the epic conclusion to the Jurassic era as two generations unite for the first time.","19:15" ,"https://images.mymovies.net/images/film/cin/350x522/fid21012.jpg","adventure");
-INSERT INTO movies VALUES (1003,"WHERE THE CRAWDADS SING", "From the best-selling novel comes a captivating mystery. Where the Crawdads Sing tells the story of Kya, an abandoned girl who raised herself to adulthood in the dangerous marshlands of North Carolina.","21:15" ,"http://images.mymovies.net/images/film/cin/350x522/fid21015.jpg","drama");
+INSERT INTO movies VALUES (1002,"JURASSIC WORLD: DOMINION", "This summer, experience the epic conclusion to the Jurassic era as two generations unite for the first time.","19:15" ,"https://images.mymovies.net/images/film/cin/350x522/fid21012.jpg","adventure","empty","empty","empty","empty","empty");
+INSERT INTO movies VALUES (1003,"WHERE THE CRAWDADS SING", "From the best-selling novel comes a captivating mystery. Where the Crawdads Sing tells the story of Kya, an abandoned girl who raised herself to adulthood in the dangerous marshlands of North Carolina.","21:15" ,"http://images.mymovies.net/images/film/cin/350x522/fid21015.jpg","drama","empty","empty","empty","empty","empty");
+INSERT INTO movies VALUES (1000,"MINIONS: THE RISE OF GRU", "Release date 1st Jul 2022 This summer, from the biggest global animated franchise in history, comes the origin story of how the worlds greatest supervillain first met his iconic Minions. ","18:15" ,"https://images.mymovies.net/images/film/cin/350x522/fid20178.jpg","comedie","empty","empty","empty","empty","empty");
+INSERT INTO movies VALUES (1004,"THOR: LOVE AND THUNDER", "Thor embarks on a journey unlike anything he's ever faced -- a quest for inner peace. However, his retirement gets interrupted by Gorr the God Butcher, a galactic killer who seeks the extinction of the gods.","20:15" ,"https://images.mymovies.net/images/film/cin/350x522/fid21005.jpg","action","empty","empty","empty","empty","empty");
+INSERT INTO movies VALUES (1005,"THE BLACK PHONE","Director Scott Derrickson returns to his terror roots and partners again with the foremost brand in the genre, Blumhouse, with a new horror thriller.","22:45","https://images.mymovies.net/images/film/cin/350x522/fid21225.jpg","action","empty","empty","empty","empty","empty");
+
+INSERT INTO movies VALUES (1006,"LONDON NAHI JAUNGA","Sara's life in London appears to be superficially complete yet she still feels something is missing. Her world crashes around her after she stumbles on her mother Zara's diary she decides to start a journey of rediscovery.","18:15","https://images.mymovies.net/images/film/cin/350x522/fid21769.jpg","comedie","empty","empty","empty","empty","empty");
 
 
-/* 
-insert into chairs  (idchair,chairnumber,val,color) values(1,"1","empty","green");
+INSERT INTO movies VALUES (1007,"FRUITS BASKET: PRELUDE","Before there was Tohru and Kyo – there was Katsuya and Kyoko. Discover the turbulent beginning of Tohru’s mom’s dark past, and the man who breathed new hope into her.","00:00","https://www.myvue.com/-/media/images/film%20and%20events/june%202022/film/fruits-basket-poster.jpg","comedie","empty","empty","empty","empty","empty");
+/* insert into chairs  (idchair,chairnumber,val,color) values(1,"1","empty","green");
 insert into chairs  (idchair,chairnumber,val,color) values(2,"2","empty","green");
 insert into chairs  (idchair,chairnumber,val,color) values(3,"3","empty","green");
 insert into chairs  (idchair,chairnumber,val,color) values(4,"4","empty","green");
@@ -138,5 +151,15 @@ insert into chairs  (idchair,chairnumber,val,color) values(57,"57","empty","gree
 insert into chairs  (idchair,chairnumber,val,color) values(58,"58","empty","green");
 insert into chairs  (idchair,chairnumber,val,color) values(59,"59","empty","green");
 insert into chairs  (idchair,chairnumber,val,color) values(60,"60","empty","green");
-insert into chairs  (idchair,chairnumber,val,color) values(61,"61","empty","green");
- */
+insert into chairs  (idchair,chairnumber,val,color) values(61,"61","empty","green"); */
+
+/*  insert into chairs (chairnumber,chair_fk)values("1",1000);
+insert into chairs (chairnumber,chair_fk)values("2",1000);
+insert into chairs (chairnumber,chair_fk)values("3",1000);
+insert into chairs (chairnumber,chair_fk)values("4",1000);
+insert into chairs (chairnumber,chair_fk)values("5",1000);
+insert into chairs (chairnumber,chair_fk)values("6",1000);
+insert into chairs (chairnumber,chair_fk)values("7",1000);
+insert into chairs (chairnumber,chair_fk)values("8",1000);
+insert into chairs (chairnumber,chair_fk)values("9",1000);
+insert into chairs (chairnumber,chair_fk)values("10",1000); */

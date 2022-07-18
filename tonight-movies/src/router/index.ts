@@ -6,7 +6,7 @@ import HomePage from '../views/HomePage.vue'
 import BookingPage from '../views/BookingPage.vue'
 import LogIn from '../views/LogInView.vue'
 import AboutUs from '@/views/AboutUs.vue'
-
+import thankyou from '../components/thankyou.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -42,6 +42,11 @@ const routes: Array<RouteRecordRaw> = [
     path:'/login',
     name:'login',
     component:LogIn
+  },
+  {
+    path:'/thankyou',
+    name:'thankyou',
+    component:thankyou
   },
   {
     path:'/BookingPage',
